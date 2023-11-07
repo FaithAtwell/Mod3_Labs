@@ -536,6 +536,7 @@
 //     .then((message) => console.log(message))
 //     .catch((error) => console.error('Error:', error)); // Updated catch block message for rejected promises
 
+//Sorted..
 
 // 10.) Fetch is a browser-based function to send a request and receive a response from a server,
 // which uses promises to handle the asynchronous response.
