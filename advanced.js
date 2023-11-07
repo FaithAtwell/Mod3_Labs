@@ -70,10 +70,9 @@
 
 // 2. The following delayMsg function is intended to be used to delay printing a message until
 // some time has passed.
-//     function delayMsg(msg)
-// {
+//     function delayMsg(msg){
 //     console.log(`This message will be printed after a delay: ${msg}`)
-// }
+//     }
 // setTimeout(delayMsg, 100, '#1: Delayed by 100ms');
 // setTimeout(delayMsg, 20, '#2: Delayed by 20ms');
 // setTimeout(delayMsg, 0, '#3: Delayed by 0ms');
@@ -168,29 +167,86 @@
 // 4. The Fibonacci sequence of numbers is a famous pattern where the next number in the
 // sequence is the sum of the previous 2.
 // e.g. 1, 1, 2, 3, 5, 8, 13, 21, 34, etc.
-// a) Write a function printFibonacci() using setInterval that outputs a number in
+//     a) Write a function printFibonacci() using setInterval that outputs a number in
 // the Fibonacci sequence every second.
-// b) Write a new version printFibonacciTimeouts() that uses nested setTimeout
-// calls to do the same thing
-// c) Extend one of the above functions to accept a limit argument, which tells it how many
-// numbers to print before stopping.
-// function DO_Fib() {
-//     let a = 1;
+// function printFibonacci() {
+//     let a = 0;
 //     let b = 1;
-//     console.log(a);
-//     const intID = setInterval(() => {
+//
+//     console.log(a); // Print the first number of the sequence
+//
+//     const interval = setInterval(() => {
 //         const next = a + b;
-//         console.log(next);
+//         console.log(b); // Output the next number in the sequence
+//
 //         a = b;
 //         b = next;
 //     }, 1000);
-//     return intID;
+//
+//     // To stop the interval after a few iterations (for demonstration purposes)
+//     setTimeout(() => {
+//         clearInterval(interval);
+//         console.log("Interval stopped");
+//     }, 10000); // Stop the interval after 10 seconds (for example)
 // }
-// const intID = DO_Fib();
-// // To stop the printing after a certain time (e.g., 10 seconds):
-// setTimeout(() => { // Stop the printing after 10 seconds
-//     clearInterval(intID);// Stop the printing after 10 seconds
-// }, 10000);
+//
+// printFibonacci(); // Call the function to start printing Fibonacci numbers
+
+//     b) Write a new version printFibonacciTimeouts() that uses nested setTimeout
+// calls to do the same thing
+// function printFibonacciTimeouts() {
+//     let a = 0;
+//     let b = 1;
+//
+//     console.log(a); // Print the first number of the sequence
+//
+//     function printNextFibonacci() {
+//         const next = a + b;
+//         console.log(b); // Output the next number in the sequence
+//
+//         a = b;
+//         b = next;
+//
+//         setTimeout(printNextFibonacci, 1000);
+//     }
+//
+//     setTimeout(printNextFibonacci, 1000); // Start the sequence after 1 second
+//     setTimeout(() => {
+//         console.log("Timeouts stopped");
+//     }, 10000); // Stop the timeouts after 10 seconds (for example)
+// }
+//
+// printFibonacciTimeouts(); // Call the function to start printing Fibonacci numbers using timeouts
+
+// c) Extend one of the above functions to accept a limit argument, which tells it how many
+// numbers to print before stopping.
+// function printFibonacciTimeouts(limit) {
+//     let a = 0;
+//     let b = 1;
+//     let count = 0;
+//
+//     console.log(a); // Print the first number of the sequence
+//     count++;
+//
+//     function printNextFibonacci() {
+//         if (count < limit) {
+//             const next = a + b;
+//             console.log(b); // Output the next number in the sequence
+//
+//             a = b;
+//             b = next;
+//             count++;
+//
+//             setTimeout(printNextFibonacci, 1000);
+//         } else {
+//             console.log("Timeouts stopped after reaching the limit.");
+//         }
+//     }
+//
+//     setTimeout(printNextFibonacci, 1000); // Start the sequence after 1 second
+// }
+//
+// printFibonacciTimeouts(10); // Call the function to print 10 Fibonacci numbers using timeouts
 
 // 5.) The following car object has several properties and a method which uses them to print a
 // description. When calling the function normally this works as expected, but using it from
@@ -408,35 +464,78 @@
 //     }
 // }
 
-// 9.) We can delay execution of a function using setTimeout, where we need to provide both
-// // the callback function and the delay after which it should execute.
+// 9. We can delay execution of a function using setTimeout, where we need to provide both
+// the callback function and the delay after which it should execute.
+
+//     a) Create a promise-based alternative randomDelay() that delays execution for a
+//     random amount of time (between 1 and 20 seconds) and returns a promise we can use
+//     via .then(), as in the starter code below
+// function randomDelay() {
+//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve('There appears to have been a delay.');
+//         }, delay);
+//     });
+// }
 //
+// randomDelay().then((message) => console.log(message));
+
+// b) If the random delay is even, consider this a successful delay and resolve the promise,
+//     and if the random number is odd, consider this a failure and reject it
 // function randomDelay() {
 //     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
 //     return new Promise((resolve, reject) => {
 //         setTimeout(() => {
 //             if (delay % 2 === 0) {
-//                 resolve(`Successful delay of ${delay} ms.`);
+//                 resolve('Successful delay');
 //             } else {
-//                 reject(`Failed delay of ${delay} ms.`);}
+//                 reject('Failed delay');
+//             }
 //         }, delay);
 //     });
 // }
+//
 // randomDelay()
 //     .then((message) => console.log(message))
 //     .catch((error) => console.error(error));
+
+// c) Update the testing code to catch rejected promises and print a different message
+// function randomDelay() {
+//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (delay % 2 === 0) {
+//                 resolve('Successful delay');
+//             } else {
+//                 reject('Failed delay');
+//             }
+//         }, delay);
+//     });
+// }
 //
-// // a) Create a promise-based alternative randomDelay() that delays execution for a
-// // random amount of time (between 1 and 20 seconds) and returns a promise we can use
-// // via .then(), as in the starter code below
-// // b) If the random delay is even, consider this a successful delay and resolve the promise,
-// // and if the random number is odd, consider this a failure and reject it
-// // c) Update the testing code to catch rejected promises and print a different message
-// // d) Try to update the then and catch messages to include the random delay value
-// // function randomDelay() {
-// // // your code
-// // }
-// // randomDelay().then(() => console.log('There appears to have been a delay.'));
+// randomDelay()
+//     .then((message) => console.log(message))
+//     .catch((error) => console.error('Error:', error)); // Updated catch block message for rejected promises
+
+// d) Try to update the then and catch messages to include the random delay value
+// function randomDelay() {
+//     const delay = Math.floor(Math.random() * 20000) + 1000; // Random delay between 1 and 20 seconds
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (delay % 2 === 0) {
+//                 resolve(`Successful delay of ${delay} ms`);
+//             } else {
+//                 reject(`Failed delay of ${delay} ms`);
+//             }
+//         }, delay);
+//     });
+// }
+//
+// randomDelay()
+//     .then((message) => console.log(message))
+//     .catch((error) => console.error('Error:', error)); // Updated catch block message for rejected promises
+
 
 // 10.) Fetch is a browser-based function to send a request and receive a response from a server,
 // which uses promises to handle the asynchronous response.
