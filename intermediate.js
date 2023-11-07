@@ -121,6 +121,7 @@
 //
 // console.log(matchingAnimals);
 
+//sorted
 
 // 4. Write a function camelCase(cssProp) that changes dash-separated CSS properties like
 // 'margin-left' into camel-cased 'marginLeft'.
