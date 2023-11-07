@@ -2,7 +2,6 @@
 // character of each word changed into a capital letter, as in the example below. Test it with
 //     different strings.
 //
-// console.log(ucFirstLetters("los angeles") )
 // function ucFirstLetters(inputString) {
 //     const words = inputString.split(' '); // Split the string into an array of words
 //     const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)); // Capitalize the first letter of each word
@@ -80,6 +79,7 @@
 // dash.
 //     b) Create variants of the camelCase function that use different types of for loops, and
 //     c) with and without the conditional operator.
+//
 // console.log(camelCase('margin-left')) // marginLeft
 // console.log(camelCase('background-image')) // backgroundImage
 // console.log(camelCase('display')) // display
@@ -101,6 +101,7 @@
 // console.log(camelCase('margin-left')); // 'marginLeft'
 // console.log(camelCase('background-image')); // 'backgroundImage'
 // console.log(camelCase('display')); // 'display'
+
 // b) Variant of the camelCase function using a for loop and without the conditional operator:
 // function camelCase(cssProp) {
 //     let result = '';
@@ -110,31 +111,40 @@
 //         if (char === '-') {
 //             capitalizeNext = true;
 //         } else {
-//             result += capitalizeNext ? char.toUpperCase() : char;
-//             capitalizeNext = false;}
+//             if (capitalizeNext) {
+//                 result += char.toUpperCase();
+//             } else {
+//                 result += char;
+//             }
+//             capitalizeNext = false;
+//         }
 //     }
 //     return result;
 // }
+//
 // console.log(camelCase('margin-left')); // 'marginLeft'
 // console.log(camelCase('background-image')); // 'backgroundImage'
 // console.log(camelCase('display')); // 'display'
+
 // c) Variant of the camelCase function using a for...of loop and the conditional operator:
 // function camelCase(cssProp) {
 //     let result = '';
 //     let capitalizeNext = false;
-//
 //     for (const char of cssProp) {
 //         if (char === '-') {
 //             capitalizeNext = true;
 //         } else {
 //             result += capitalizeNext ? char.toUpperCase() : char;
-//             capitalizeNext = false;}
+//             capitalizeNext = false;
+//         }
 //     }
 //     return result;
 // }
+//
 // console.log(camelCase('margin-left')); // 'marginLeft'
 // console.log(camelCase('background-image')); // 'backgroundImage'
 // console.log(camelCase('display')); // 'display'
+
 
 // 5. Decimal number operations in JavaScript can lead to unexpected results, as in the
 // following:
