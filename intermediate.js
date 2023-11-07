@@ -13,65 +13,114 @@
 // 2. Create a function truncate(str, max) that truncates a given string of text if its total
 // length is greater than the max length. It should return either the truncated text, with an
 //     ellipsis (...) added to the end if it was too long, or the original text otherwise.
-//     b) Write another variant of the truncate function that uses a conditional operator.
-//
-// console.log(truncate('This text will be truncated if it is too long', 25))
-// // This text will be truncat...
-// a) Truncate function:
 // function truncate(str, max) {
-//     if (str.length <= max) { // If the string is already short enough, just return it
-//         return str;
+//     if (str.length > max) {
+//         return str.substring(0, max - 3) + '...'; // Truncate and add ellipsis
 //     } else {
-//         return str.slice(0, max) + '...';}  // truncate it
-// }
-// console.log(truncate('This text will be truncated if it is too long', 25));
-// b) truncate function using ternary
-// function truncate(str, max) {
-//     return str.length <= max ? str : str.slice(0, max) + '...'; //  ternary truncate it
+//         return str; // Return the original string
+//     }
 // }
 //
+// // Example usage:
+// console.log(truncate('This text will be truncated if it is too long', 25));
+
+//     b) Write another variant of the truncate function that uses a conditional operator.
+//function truncate(str, max) {
+//     return str.length > max ? str.substring(0, max - 3) + '...' : str;
+// }
+//
+// // Example usage:
 // console.log(truncate('This text will be truncated if it is too long', 25));
 
 // 3. Use the following animals array for the below tasks. Test each one by printing the result to
 // the console. Review the following link for tips:
-// const animals = ['Tiger', 'Giraffe']
-// console.log(animals)
 //
-// // a) Add 2 new values to the end:
-//
-// animals.push('Lion', 'Elephant');
+// https://developer.mozilla.org/en-
+//     US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+// a) Add 2 new values to the end
+// const animals = ['Tiger', 'Giraffe'];
 // console.log(animals);
 //
-// // b) Add 2 new values to the beginning:
+// animals.push('Elephant', 'Lion');
 //
-// animals.unshift('Monkey', 'Kangaroo');
+// console.log(animals);
+
+// b) Add 2 new values to the beginning
+// const animals = ['Tiger', 'Giraffe'];
 // console.log(animals);
 //
-// // c) Sort the values alphabetically:
+// animals.unshift('Elephant', 'Lion');
+//
+// console.log(animals);
+
+// c) Sort the values alphabetically
+// const animals = ['Tiger', 'Giraffe'];
+// console.log(animals);
+//
+// animals.unshift('Elephant', 'Lion');
 //
 // animals.sort();
+//
+// console.log(animals);
+
+// d) Write a function replaceMiddleAnimal(newValue) that replaces the value in the
+// middle of the animals array with newValue
+// function replaceMiddleAnimal(newValue) {
+//     const middleIndex = Math.floor(animals.length / 2);
+//
+//     if (animals.length % 2 !== 0) {
+//         animals[middleIndex] = newValue;
+//     } else {
+//         animals.splice(middleIndex - 1, 1, newValue);
+//     }
+// }
+//
+// const animals = ['Tiger', 'Giraffe'];
 // console.log(animals);
 //
-// // d) Write a function replaceMiddleAnimal(newValue) that replaces the value in the middle of the animals array with newValue:
+// animals.unshift('Elephant', 'Lion');
+//
+// animals.sort();
+//
+// console.log(animals);
+//
+// replaceMiddleAnimal('Monkey');
+//
+// console.log(animals);
+
+//     e) Write a function findMatchingAnimals(beginsWith) that returns a new array
+// containing all the animals that begin with the beginsWith string. Try to make it work
+// regardless of upper/lower case.
+// const animals = ['Tiger', 'Giraffe', 'Elephant', 'Lion'];
 //
 // function replaceMiddleAnimal(newValue) {
-//     if (animals.length % 2 === 1) {
-//         const middleIndex = Math.floor(animals.length / 2);
-//         animals[middleIndex] = newValue;}
+//     const middleIndex = Math.floor(animals.length / 2);
+//
+//     if (animals.length % 2 !== 0) {
+//
+//         animals[middleIndex] = newValue;
+//     } else {
+//         animals.splice(middleIndex - 1, 1, newValue);
+//     }
 // }
-// replaceMiddleAnimal('Cheetah');
+//
 // console.log(animals);
 //
-// // e) Write a function findMatchingAnimals(beginsWith) that returns a new array
-// // containing all the animals that begin with the beginsWith string.
-// // This function works regardless of upper/lower case:
+// replaceMiddleAnimal('Monkey');
+//
+// console.log(animals);
 //
 // function findMatchingAnimals(beginsWith) {
-//     beginsWith = beginsWith.toLowerCase();
-//     return animals.filter(animal => animal.toLowerCase().startsWith(beginsWith));}
-// console.log(findMatchingAnimals('gi'));
-// console.log(findMatchingAnimals('t'));
-// console.log(findMatchingAnimals('l'));
+//     const lowercaseBeginsWith = beginsWith.toLowerCase();
+//     return animals.filter(animal => animal.toLowerCase().startsWith(lowercaseBeginsWith));
+// }
+//
+// const beginsWith = 't';
+// const matchingAnimals = findMatchingAnimals(beginsWith);
+//
+// console.log(matchingAnimals);
+
 
 // 4. Write a function camelCase(cssProp) that changes dash-separated CSS properties like
 // 'margin-left' into camel-cased 'marginLeft'.
